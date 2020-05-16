@@ -1,0 +1,39 @@
+<idea-plugin>
+    <id>com.AlexWalkerDev.Deno.RunConfig</id>
+    <name>Deno run template</name>
+    <version>1.0</version>
+    <vendor email="Alexander.i.walker@outlook.com" url="https://github.com/alexiwalker">Alex Walker</vendor>
+
+    <description><![CDATA[
+    Alpha run configuration for Deno typescript web runtime
+    ]]></description>
+
+    <change-notes><![CDATA[
+     Known bugs:
+
+     * doesn't remember settings between Idea/Webstorm sessions
+     * lacking some deno permission flags
+     * doesn't have a file select dialogue for file entry point.
+
+     I'm just trying to get into a minimal working state
+    ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>JavaScript</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <configurationType implementation="DenoRunConfigurationType"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+</idea-plugin>

@@ -9,12 +9,12 @@ public class DenoRunConfigurationType implements ConfigurationType {
     @NotNull
     @Override
     public String getDisplayName() {
-        return "DenoRunConfiguration";
+        return "Deno WebApp";
     }
 
     @Override
     public String getConfigurationTypeDescription() {
-        return "Deno Run Configuration Type";
+        return "Deno Run Configuration";
     }
 
     @Override

@@ -12,7 +12,9 @@
      Known bugs:
 
      * doesn't remember settings between Idea/Webstorm sessions
+
      * lacking some deno permission flags
+
      * doesn't have a file select dialogue for file entry point.
 
      I'm just trying to get into a minimal working state

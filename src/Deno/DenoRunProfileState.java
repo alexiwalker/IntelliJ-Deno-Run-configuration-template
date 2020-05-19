@@ -34,8 +34,8 @@ public class DenoRunProfileState extends CommandLineState {
         commandLine.addParameter("run");
 
         String[] params = this.executionString.split(" ");
-        for (int i =0;i<params.length;i++){
-            commandLine.addParameter(params[i]);
+        for (String param : params) {
+            commandLine.addParameter(param);
         }
 
         commandLine.setWorkDirectory(this.getEnvironment().getProject().getBasePath());

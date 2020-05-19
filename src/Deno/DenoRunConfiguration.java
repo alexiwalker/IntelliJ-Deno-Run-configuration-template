@@ -63,7 +63,7 @@ public class DenoRunConfiguration extends RunConfigurationBase {
                 throw new RuntimeConfigurationException("Error: " + e.getMessage());
             }
             if (entry instanceof String) {
-                allowedFolders.add(getProject().getBasePath() + (String) entry);
+                allowedFolders.add( (String) entry);
             } else {
                 throw new RuntimeConfigurationException("Entry provided in Allow-write is not a string");
             }
@@ -94,7 +94,7 @@ public class DenoRunConfiguration extends RunConfigurationBase {
             JSONObject jobj = new JSONObject(content);
 
             String mainTS = (String) jobj.get(ExecutionScriptKey);
-            flags.put(ExecutionScriptKey, getProject().getBasePath() + File.separator + mainTS);
+            flags.put(ExecutionScriptKey,  mainTS);
 
 
             if (jobj.has(allowWriteKey)) {
@@ -204,22 +204,28 @@ public class DenoRunConfiguration extends RunConfigurationBase {
     @Override
     public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment executionEnvironment) throws ExecutionException {
 
-        return new CommandLineState(executionEnvironment) {
-            @NotNull
-            @Override
-            protected ProcessHandler startProcess() throws ExecutionException {
+        try {
+            return new DenoRunProfileState(executionEnvironment,getCommand());
+        } catch (RuntimeConfigurationException e) {
+            throw new ExecutionException(e.getMessage());
+        }
 
-                try {
-                    return new ColoredProcessHandler(
-                            Runtime.getRuntime().exec(
-                                    String.format(
-                                            "Deno run %s", getCommand()
-                                    )
-                            ), "Starting Web Deno App", Charset.defaultCharset());
-                } catch (Exception e) {
-                    throw new ExecutionException("");
-                }
-            }
-        };
+//        return new CommandLineState(executionEnvironment) {
+//            @NotNull
+//            @Override
+//            protected ProcessHandler startProcess() throws ExecutionException {
+//
+//                try {
+//                    return new ColoredProcessHandler(
+//                            Runtime.getRuntime().exec(
+//                                    String.format(
+//                                            "Deno run %s", getCommand()
+//                                    )
+//                            ), "Starting Web Deno App", Charset.defaultCharset());
+//                } catch (Exception e) {
+//                    throw new ExecutionException("");
+//                }
+//            }
+//        };
     }
 }

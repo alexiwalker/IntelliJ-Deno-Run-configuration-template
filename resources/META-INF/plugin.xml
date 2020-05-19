@@ -31,7 +31,8 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <configurationType implementation="DenoRunConfigurationType"/>
+        <configurationType implementation="Deno.DenoRunConfigurationType"/>
+        <configurationType implementation="RunAny.RunAnyRunConfigurationType"/>
     </extensions>
 
     <actions>

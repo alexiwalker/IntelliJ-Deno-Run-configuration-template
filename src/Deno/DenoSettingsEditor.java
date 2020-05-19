@@ -1,3 +1,5 @@
+package Deno;
+
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.ui.ComponentWithBrowseButton;

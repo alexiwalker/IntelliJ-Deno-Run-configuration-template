@@ -19,7 +19,7 @@ public class DenoRunConfigurationType implements ConfigurationType {
 
     @Override
     public Icon getIcon() {
-        return AllIcons.General.Information;
+        return AllIcons.General.Web;
     }
 
     @NotNull

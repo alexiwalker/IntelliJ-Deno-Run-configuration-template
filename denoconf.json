@@ -1,0 +1,13 @@
+{
+  "entry": "/main.ts",
+  "allow-net": true,
+  "allow-write": [
+    "*"
+  ],
+  "allow-read": [
+    "*"
+  ],
+  "set-flags": [
+
+  ]
+}

@@ -3,8 +3,6 @@ package Deno;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
 import com.intellij.execution.configurations.*;
-import com.intellij.execution.process.ColoredProcessHandler;
-import com.intellij.execution.process.ProcessHandler;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.openapi.options.SettingsEditor;
 import com.intellij.openapi.project.Project;
@@ -12,10 +10,10 @@ import org.assertj.core.annotations.Nullable;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,15 +22,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONObject;
-
 public class DenoRunConfiguration extends RunConfigurationBase {
+    String allowWriteKey = "allow-write";
+    String allowWriteFlag = "--allow-write";
+    String allowReadKey = "allow-read";
+    String AllowReadFlag = "--allow-read";
+    String ExecutionScriptKey = "entry";
+    String allowNetKey = "allow-net";
+    String allowNetFlag = "--allow-net";
+    private DenoSettingsEditor denoSettingsEditor = null;
+
     protected DenoRunConfiguration(Project project, ConfigurationFactory factory, String name) {
         super(project, factory, name);
     }
-
-    private DenoSettingsEditor denoSettingsEditor = null;
-
 
     @NotNull
     @Override
@@ -43,7 +45,6 @@ public class DenoRunConfiguration extends RunConfigurationBase {
 
         return denoSettingsEditor;
     }
-
 
     String compressAllowFlag(String flag, @NotNull JSONArray entries) throws RuntimeConfigurationException, JSONException {
 
@@ -63,7 +64,7 @@ public class DenoRunConfiguration extends RunConfigurationBase {
                 throw new RuntimeConfigurationException("Error: " + e.getMessage());
             }
             if (entry instanceof String) {
-                allowedFolders.add( (String) entry);
+                allowedFolders.add((String) entry);
             } else {
                 throw new RuntimeConfigurationException("Entry provided in Allow-write is not a string");
             }
@@ -71,18 +72,6 @@ public class DenoRunConfiguration extends RunConfigurationBase {
 
         return flag + "=" + String.join(",", allowedFolders);
     }
-
-
-    String allowWriteKey = "allow-write";
-    String allowWriteFlag = "--allow-write";
-
-    String allowReadKey = "allow-read";
-    String AllowReadFlag = "--allow-read";
-
-    String ExecutionScriptKey = "entry";
-
-    String allowNetKey = "allow-net";
-    String allowNetFlag = "--allow-net";
 
     Map<String, String> ParseDenoConfJson(String jsonLocation) throws RuntimeConfigurationException {
         Map<String, String> flags = new HashMap<>();
@@ -94,7 +83,7 @@ public class DenoRunConfiguration extends RunConfigurationBase {
             JSONObject jobj = new JSONObject(content);
 
             String mainTS = (String) jobj.get(ExecutionScriptKey);
-            flags.put(ExecutionScriptKey,  mainTS);
+            flags.put(ExecutionScriptKey, mainTS);
 
 
             if (jobj.has(allowWriteKey)) {
@@ -205,7 +194,7 @@ public class DenoRunConfiguration extends RunConfigurationBase {
     public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment executionEnvironment) throws ExecutionException {
 
         try {
-            return new DenoRunProfileState(executionEnvironment,getCommand());
+            return new DenoRunProfileState(executionEnvironment, getCommand());
         } catch (RuntimeConfigurationException e) {
             throw new ExecutionException(e.getMessage());
         }

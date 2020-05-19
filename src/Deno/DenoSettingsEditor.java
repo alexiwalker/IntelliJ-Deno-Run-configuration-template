@@ -40,16 +40,16 @@ public class DenoSettingsEditor extends SettingsEditor<DenoRunConfiguration> {
         myMainClass.setComponent(new TextFieldWithBrowseButton());
     }
 
-    public List<String> getFlags(){
+    public List<String> getFlags() {
         List<String> flags = new ArrayList<>();
-        if(allowNetCheckBox.isSelected()) flags.add("--allow-net");
-        if(allowReadCheckBox.isSelected()) flags.add("--allow-read");
-        if(allowWriteCheckBox.isSelected()) flags.add("--allow-write");
+        if (allowNetCheckBox.isSelected()) flags.add("--allow-net");
+        if (allowReadCheckBox.isSelected()) flags.add("--allow-read");
+        if (allowWriteCheckBox.isSelected()) flags.add("--allow-write");
 
         return flags;
     }
 
-    public String getRootPath(){
+    public String getRootPath() {
         return RootPathFile.getText();
     }
 }

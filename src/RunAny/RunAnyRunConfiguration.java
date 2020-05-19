@@ -10,12 +10,11 @@ import org.assertj.core.annotations.Nullable;
 import org.jetbrains.annotations.NotNull;
 
 public class RunAnyRunConfiguration extends RunConfigurationBase {
+    private RunAnySettingsEditor SettingsEditor = null;
+
     protected RunAnyRunConfiguration(Project project, ConfigurationFactory factory, String name) {
         super(project, factory, name);
     }
-
-    private RunAnySettingsEditor SettingsEditor = null;
-
 
     @NotNull
     @Override
@@ -35,12 +34,11 @@ public class RunAnyRunConfiguration extends RunConfigurationBase {
     }
 
 
-
     @Nullable
     @Override
     public RunProfileState getState(@NotNull Executor executor, @NotNull ExecutionEnvironment executionEnvironment) throws ExecutionException {
 
-            return new RunAnyRunProfileState(executionEnvironment,SettingsEditor.getCommand());
+        return new RunAnyRunProfileState(executionEnvironment, SettingsEditor.getCommand());
 
     }
 

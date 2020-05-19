@@ -8,8 +8,6 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RunAnySettingsEditor extends SettingsEditor<RunAnyRunConfiguration> {
     private JPanel myPanel;
@@ -37,7 +35,7 @@ public class RunAnySettingsEditor extends SettingsEditor<RunAnyRunConfiguration>
         myMainClass.setComponent(new TextFieldWithBrowseButton());
     }
 
-    public String getCommand(){
+    public String getCommand() {
         return commandToRun.getText();
     }
 

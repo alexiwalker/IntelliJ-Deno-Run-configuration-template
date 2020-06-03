@@ -1,8 +1,3 @@
-# IntelliJ-Deno-Run-configuration-template
-[Alpha] Run config template plugin for the intelliJ platform for the Deno TS runtime
+Abandoned now that IntelliJ has a proper plugin for Deno (finally, -as of may 26 2020).
 
-Doesn't save settings between runs, currently supports deno --allow-net --allow-read --allow-write
-
-But atleast it will run a deno app.
-
-Why are there no Deno plugins already for intelliJ?
+I still like my denoconf.json idea for managing deployments / flag and permission management. I may pick that up again another time
